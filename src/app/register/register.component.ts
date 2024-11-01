@@ -1,6 +1,8 @@
 import {Component, inject, OnInit} from '@angular/core';
 import {RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
+import {Store} from '@ngrx/store';
+import {registerAction} from './store/actions/register.action';
 
 @Component({
   selector: 'mc-register',
@@ -12,26 +14,26 @@ import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss'
 })
-export class RegisterComponent implements OnInit{
+export class RegisterComponent implements OnInit {
 
   form: FormGroup;
 
   private fb = inject(FormBuilder)
+  private store = inject(Store)
+
   ngOnInit(): void {
     this.initializeForm()
   }
 
-  initializeForm(): void{
+  initializeForm(): void {
     this.form = this.fb.group({
       username: '',
       email: '',
       password: ''
     })
-    console.log(this.form)
   }
 
   onSubmit(): void {
-    console.log(this.form.value)
+    this.store.dispatch(registerAction(this.form.value))
   }
-
 }
