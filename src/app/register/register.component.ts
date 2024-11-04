@@ -8,6 +8,8 @@ import { Observable } from 'rxjs';
 import { isSubmittingSelector } from './store/selectors';
 import { AppStateInterface } from '../shared/types/appState.interface';
 import { AsyncPipe } from '@angular/common';
+import { HttpClient } from '@angular/common/http';
+import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 
 @Component({
   selector: 'mc-register',
@@ -46,5 +48,8 @@ export class RegisterComponent implements OnInit {
     this.store.dispatch(registerAction(this.form.value));
     this.service.log();
     this.service.log1();
+    this.service
+      .register({ user: this.form.value })
+      .subscribe((aaa) => console.log(aaa));
   }
 }
