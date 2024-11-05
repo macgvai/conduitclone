@@ -3,13 +3,14 @@ import { RouterLink } from '@angular/router';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { select, Store } from '@ngrx/store';
 import { registerAction } from './store/actions/register.action';
-import { RegisterService } from './register.service';
+import { RegisterService } from './services/register.service';
 import { Observable } from 'rxjs';
 import { isSubmittingSelector } from './store/selectors';
 import { AppStateInterface } from '../shared/types/appState.interface';
 import { AsyncPipe } from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
+import {RegisterRequestInterface} from './types/registerRequest.interface';
 
 @Component({
   selector: 'mc-register',
@@ -46,10 +47,13 @@ export class RegisterComponent implements OnInit {
 
   onSubmit(): void {
     this.store.dispatch(registerAction(this.form.value));
-    this.service.log();
-    this.service.log1();
+
+    const user: RegisterRequestInterface = {
+      user: this.form.value
+    }
+
     this.service
-      .register({ user: this.form.value })
-      .subscribe((aaa) => console.log(aaa));
+      .register(user)
+      .subscribe();
   }
 }
