@@ -8,3 +8,8 @@ export const isSubmittingSelector = createSelector(
   selectRegister,
   (state: RegisterStateInterface) => state.isSubmitting
 );
+
+export const validationErrorsSelector = createSelector(
+  selectRegister,
+  (state: RegisterStateInterface) => state.validationErrors
+);

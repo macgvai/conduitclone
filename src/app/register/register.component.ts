@@ -5,17 +5,19 @@ import { select, Store } from '@ngrx/store';
 import { registerAction } from './store/actions/register.action';
 import { RegisterService } from './services/register.service';
 import { Observable } from 'rxjs';
-import { isSubmittingSelector } from './store/selectors';
+import {isSubmittingSelector, validationErrorsSelector} from './store/selectors';
 import { AppStateInterface } from '../shared/types/appState.interface';
-import { AsyncPipe } from '@angular/common';
+import {AsyncPipe, NgForOf, NgIf} from '@angular/common';
 import { HttpClient } from '@angular/common/http';
 import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 import {RegisterRequestInterface} from './types/registerRequest.interface';
+import {BackendErrorsInterface} from '../shared/types/backendErrors.interface';
+import {BackendErrorMessagesComponent} from '../shared/backendErrrorMessages/backend-error-messages.component';
 
 @Component({
   selector: 'mc-register',
   standalone: true,
-  imports: [RouterLink, ReactiveFormsModule, AsyncPipe],
+  imports: [RouterLink, ReactiveFormsModule, AsyncPipe, NgIf, NgForOf, BackendErrorMessagesComponent],
 
   templateUrl: './register.component.html',
   styleUrl: './register.component.scss',
@@ -23,6 +25,8 @@ import {RegisterRequestInterface} from './types/registerRequest.interface';
 export class RegisterComponent implements OnInit {
   form: FormGroup;
   isSubmitting$: Observable<boolean>;
+  validationErrors$: Observable<BackendErrorsInterface | null>;
+
 
   private fb = inject(FormBuilder);
   private store = inject(Store);
@@ -43,6 +47,7 @@ export class RegisterComponent implements OnInit {
 
   initializeValues(): void {
     this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.validationErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
   onSubmit(): void {
