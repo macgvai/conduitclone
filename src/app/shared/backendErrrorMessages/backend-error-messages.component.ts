@@ -16,19 +16,14 @@ export class BackendErrorMessagesComponent implements OnInit{
 
   errorMessages: string[]
 
-  // ngOnInit():void {
-  //   this.errorMessages = Object.keys(this.backendErrorsProps).map((name) => {
-  //     const messages  = this.backendErrorsProps[name].join(', ')
-  //
-  //     return `${name} ${messages}`
-  //   })
-  // }
-  ngOnInit(): void {
-    this.errorMessages = Object.keys(this.backendErrorsProps).map((name: string) => {
-      const massages = this.backendErrorsProps[name].join(', ')
+  ngOnInit():void {
+    this.errorMessages = Object.keys(this.backendErrorsProps).map((name) => {
+      const messages  = this.backendErrorsProps[name].join(', ')
 
-      return `${name} ${massages}`
+      // console.log(`${name} ${messages}`)
+
+      // return `${name} ${messages}`
+      return messages
     })
   }
-
 }
