@@ -6,12 +6,14 @@ import {
 import {provideRouter} from '@angular/router';
 
 import {routes} from './app.routes';
-import {provideState, provideStore} from '@ngrx/store';
+import {combineReducers, provideState, provideStore} from '@ngrx/store';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
 import {registerReducer} from './register/store/reducers';
 import {provideHttpClient} from '@angular/common/http';
 import {provideEffects} from '@ngrx/effects';
 import {RegisterEffect} from './register/store/effects/register.effect';
+import {loginReducer} from './login/store/redusers';
+import {LoginEffect} from './login/store/effects/login.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,8 +25,9 @@ export const appConfig: ApplicationConfig = {
       logOnly: !isDevMode(),
     }),
     provideState({name: 'register', reducer: registerReducer}),
+    provideState({name: 'login', reducer: loginReducer}),
     provideHttpClient(),
-    provideEffects([RegisterEffect]),
+    provideEffects([RegisterEffect, LoginEffect]),
 
   ]
 };
