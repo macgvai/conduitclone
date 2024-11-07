@@ -24,7 +24,8 @@ export const appConfig: ApplicationConfig = {
     }),
     provideState({name: 'register', reducer: registerReducer}),
     provideHttpClient(),
-    provideEffects([RegisterEffect])
+    provideEffects([RegisterEffect]),
+
   ]
 };
 
