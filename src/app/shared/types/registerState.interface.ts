@@ -1,5 +1,5 @@
-import {CurrentUserInterface} from '../../shared/types/currentUser.interface';
-import {BackendErrorsInterface} from '../../shared/types/backendErrors.interface';
+import {CurrentUserInterface} from './currentUser.interface';
+import {BackendErrorsInterface} from './backendErrors.interface';
 
 export interface RegisterStateInterface {
   isSubmitting: boolean,

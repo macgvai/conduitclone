@@ -10,10 +10,10 @@
           </a>
         </p>
 
-<!--        <mc-backend-error-messages-->
-<!--          *ngIf="validationErrors$ | async"-->
-<!--          [backendErrors]="validationErrors$ | async"-->
-<!--        ></mc-backend-error-messages>-->
+        <mc-backend-error-messages
+          *ngIf="validationErrors$ | async"
+          [backendErrors]="validationErrors$ | async"
+        ></mc-backend-error-messages>
 
         <form [formGroup]="form" (ngSubmit)="onSubmit()">
           <fieldset>
@@ -26,7 +26,7 @@
               <input class="form-control form-control-lg" type="password" placeholder="Password" formControlName="password">
             </fieldset>
 
-            <button class="btn btn-lg btn-primary pull-xs-right" type="submit">Sign in</button>
+            <button class="btn btn-lg btn-primary pull-xs-right" type="submit" [disabled]="isSubmitting$ | async">Sign in</button>
 
           </fieldset>
         </form>

@@ -8,12 +8,12 @@ import {provideRouter} from '@angular/router';
 import {routes} from './app.routes';
 import {combineReducers, provideState, provideStore} from '@ngrx/store';
 import {provideStoreDevtools} from '@ngrx/store-devtools';
-import {registerReducer} from './register/store/reducers';
+// import {registerReducer} from './register/store/reducers';
 import {provideHttpClient} from '@angular/common/http';
 import {provideEffects} from '@ngrx/effects';
-import {RegisterEffect} from './register/store/effects/register.effect';
-import {loginReducer} from './login/store/redusers';
-import {LoginEffect} from './login/store/effects/login.effect';
+import {RegisterEffect} from './store/effects/register.effect';
+import {LoginEffect} from './store/effects/login.effect';
+import {authReducer} from './store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -24,8 +24,7 @@ export const appConfig: ApplicationConfig = {
       maxAge: 25,
       logOnly: !isDevMode(),
     }),
-    provideState({name: 'register', reducer: registerReducer}),
-    provideState({name: 'login', reducer: loginReducer}),
+    provideState({name: 'auth', reducer: authReducer}),
     provideHttpClient(),
     provideEffects([RegisterEffect, LoginEffect]),
 

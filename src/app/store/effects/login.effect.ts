@@ -7,31 +7,32 @@ import {
   registerFailureAction
 } from '../actions/register.action'
 import {of} from 'rxjs'
-import {RegisterService} from '../../services/register.service';
-import {CurrentUserInterface} from '../../../shared/types/currentUser.interface';
 import {HttpErrorResponse} from '@angular/common/http';
-import {PersistenceService} from '../../../shared/services/persistence.service';
 import {Router} from '@angular/router';
+import {PersistenceService} from '../../shared/services/persistence.service';
+import {CurrentUserInterface} from '../../shared/types/currentUser.interface';
+import {loginAction, loginFailureAction, loginSuccessAction} from '../actions/login.action';
+import {LoginService} from '../../login/services/login.service';
 
 @Injectable()
-export class RegisterEffect {
+export class LoginEffect {
 // из конструктора не работает
   actions$ = inject(Actions)
 
   register$ = createEffect(() =>
     this.actions$.pipe(
-      ofType(registerAction),
+      ofType(loginAction),
       exhaustMap(({request}) => {
-        return this.authService.register(request).pipe(
+        return this.loginService.login(request).pipe(
           map((currentUser: CurrentUserInterface) => {
 
             this.persistenceService.set('accessToken', currentUser.token)
             // window.localStorage.setItem('accessToken', currentUser.token)
-            return registerSuccessAction({currentUser})
+            return loginSuccessAction({currentUser})
           }),
 
           catchError((errorResponse: HttpErrorResponse) => {
-            return of(registerFailureAction({errors: errorResponse.error.errors}))
+            return of(loginFailureAction({errors: errorResponse.error.errors}))
           })
         )
       })
@@ -52,6 +53,6 @@ export class RegisterEffect {
     }
   )
 
-  constructor(private authService: RegisterService, private persistenceService: PersistenceService, private router: Router) {
+  constructor(private loginService: LoginService, private persistenceService: PersistenceService, private router: Router) {
   }
 }

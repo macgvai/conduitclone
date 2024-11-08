@@ -1,8 +1,8 @@
-import {RegisterStateInterface} from '../types/registerState.interface';
+// import {RegisterStateInterface} from '../../shared/types/registerState.interface';
 import {createReducer, on} from '@ngrx/store';
 import {registerAction, registerFailureAction, registerSuccessAction} from './actions/register.action';
-import {CurrentUserInterface} from '../../shared/types/currentUser.interface';
-import {BackendErrorsInterface} from '../../shared/types/backendErrors.interface';
+import {RegisterStateInterface} from '../shared/types/registerState.interface';
+import {loginAction, loginFailureAction, loginSuccessAction} from './actions/login.action';
 
 const initialState: RegisterStateInterface = {
   isSubmitting: false,
@@ -11,7 +11,7 @@ const initialState: RegisterStateInterface = {
   validationErrors: null
 };
 
-export const registerReducer = createReducer(
+export const authReducer = createReducer(
   initialState,
   on(
     registerAction,
@@ -38,5 +38,32 @@ export const registerReducer = createReducer(
       isSubmitting: false,
       validationErrors: action.errors
     })
-  )
+  ),
+
+  on(
+    loginAction,
+    state => ({
+      ...state,
+      isSubmitting: true,
+      validationErrors: null
+    })
+  ),
+  on(
+    loginSuccessAction,
+    (state, action): RegisterStateInterface => ({
+      ...state,
+      isSubmitting: false,
+      isLoggedIn: true,
+      currentUser: action.currentUser
+    })
+  ),
+  on(
+    loginFailureAction,
+    (state, action): RegisterStateInterface => ({
+      ...state,
+      isSubmitting: false,
+      validationErrors: action.errors
+    })
+  ),
+
 );

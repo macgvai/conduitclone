@@ -22,8 +22,8 @@ export class BackendErrorMessagesComponent implements OnInit{
 
       // console.log(`${name} ${messages}`)
 
-      // return `${name} ${messages}`
-      return messages
+      return `${name} ${messages}`
+      // return messages
     })
   }
 }

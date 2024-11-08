@@ -3,8 +3,12 @@ import {AsyncPipe, NgIf} from '@angular/common';
 import {BackendErrorMessagesComponent} from '../shared/backendErrrorMessages/backend-error-messages.component';
 import {RouterLink} from '@angular/router';
 import {FormBuilder, FormGroup, ReactiveFormsModule} from '@angular/forms';
-import {Store} from '@ngrx/store';
-import {loginAction} from './store/actions/login.action';
+import {select, Store} from '@ngrx/store';
+import {loginAction} from '../store/actions/login.action';
+import {LoginRequestInterface} from './types/loginRequest.interface';
+import {isSubmittingSelector, validationErrorsSelector} from '../store/selectors';
+import {Observable} from 'rxjs';
+import {BackendErrorsInterface} from '../shared/types/backendErrors.interface';
 
 @Component({
   selector: 'mc-login',
@@ -21,6 +25,8 @@ import {loginAction} from './store/actions/login.action';
 })
 export class LoginComponent implements OnInit{
   form: FormGroup
+  isSubmitting$: Observable<boolean>;
+  validationErrors$: Observable<BackendErrorsInterface | null>;
 
   private fb = inject(FormBuilder);
   private store = inject(Store)
@@ -28,7 +34,7 @@ export class LoginComponent implements OnInit{
 
   ngOnInit(): void {
     this.initializeForm();
-
+    this.initializeValues();
   }
 
   initializeForm(): void {
@@ -38,13 +44,17 @@ export class LoginComponent implements OnInit{
     })
   }
 
-onSubmit(): void {
-    const request = {
-      user: this.form.value
+  initializeValues(): void {
+    this.isSubmitting$ = this.store.pipe(select(isSubmittingSelector));
+    this.validationErrors$ = this.store.pipe(select(validationErrorsSelector));
+  }
 
+onSubmit(): void {
+    const request: LoginRequestInterface = {
+      user: this.form.value
     }
 
-  this.store.dispatch(loginAction({request: request}))
+  this.store.dispatch(loginAction({request}))
 }
 
 }

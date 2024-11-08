@@ -1,5 +1,5 @@
 export interface AppStateInterface {
-  register: {
+  auth: {
     isSubmitting: boolean
   }
 }
