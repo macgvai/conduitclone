@@ -23,7 +23,7 @@ import {BackendErrorsInterface} from '../shared/types/backendErrors.interface';
   templateUrl: './login.component.html',
   styleUrl: './login.component.scss'
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   form: FormGroup
   isSubmitting$: Observable<boolean>;
   validationErrors$: Observable<BackendErrorsInterface | null>;
@@ -49,12 +49,11 @@ export class LoginComponent implements OnInit{
     this.validationErrors$ = this.store.pipe(select(validationErrorsSelector));
   }
 
-onSubmit(): void {
+  onSubmit(): void {
     const request: LoginRequestInterface = {
       user: this.form.value
     }
 
-  this.store.dispatch(loginAction({request}))
-}
-
+    this.store.dispatch(loginAction({request}))
+  }
 }

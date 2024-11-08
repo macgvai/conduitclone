@@ -1,11 +1,6 @@
 import {inject, Injectable} from '@angular/core'
 import {Actions, createEffect, ofType} from '@ngrx/effects'
 import {map, catchError, exhaustMap, tap} from 'rxjs/operators'
-import {
-  registerAction,
-  registerSuccessAction,
-  registerFailureAction
-} from '../actions/register.action'
 import {of} from 'rxjs'
 import {HttpErrorResponse} from '@angular/common/http';
 import {Router} from '@angular/router';
@@ -19,7 +14,7 @@ export class LoginEffect {
 // из конструктора не работает
   actions$ = inject(Actions)
 
-  register$ = createEffect(() =>
+  login$ = createEffect(() =>
     this.actions$.pipe(
       ofType(loginAction),
       exhaustMap(({request}) => {
@@ -41,7 +36,7 @@ export class LoginEffect {
 
   redirectAfterSubmit = createEffect(() =>
       this.actions$.pipe(
-        ofType(registerSuccessAction),
+        ofType(loginSuccessAction),
         tap(
           () => {
             this.router.navigateByUrl('/')

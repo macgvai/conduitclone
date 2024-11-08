@@ -14,11 +14,15 @@ export class LoginService {
   http = inject(HttpClient)
   constructor() { }
 
+  getUser(response: AuthResponseInterface): CurrentUserInterface {
+    return response.user
+  }
+
   login(data: LoginRequestInterface): Observable<CurrentUserInterface> {
     const url =  environment.apiUrl + '/users/login'
 
     return this.http
       .post<AuthResponseInterface>(url, data)
-      .pipe(map( (response: AuthResponseInterface) => response.user ));
+      .pipe(map( this.getUser ));
   }
 }
