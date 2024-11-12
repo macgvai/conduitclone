@@ -1,7 +1,9 @@
-import { Component } from '@angular/core';
+import {Component, inject, OnInit} from '@angular/core';
 import { RouterOutlet } from '@angular/router';
 import {RegisterComponent} from './register/register.component';
 import {TopBarComponent} from './shared/top-bar/top-bar.component';
+import {Store} from '@ngrx/store';
+import {getCurrentUserAction} from './store/actions/getCurrentUser.action';
 
 @Component({
   selector: 'app-root',
@@ -10,4 +12,9 @@ import {TopBarComponent} from './shared/top-bar/top-bar.component';
   templateUrl: './app.component.html',
   styleUrl: './app.component.scss'
 })
-export class AppComponent {}
+export class AppComponent implements OnInit {
+  store = inject(Store);
+  ngOnInit(): void {
+    this.store.dispatch(getCurrentUserAction())
+  }
+}

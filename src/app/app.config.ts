@@ -14,6 +14,7 @@ import {provideEffects} from '@ngrx/effects';
 import {RegisterEffect} from './store/effects/register.effect';
 import {LoginEffect} from './store/effects/login.effect';
 import {authReducer} from './store/reducers';
+import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -26,7 +27,7 @@ export const appConfig: ApplicationConfig = {
     }),
     provideState({name: 'auth', reducer: authReducer}),
     provideHttpClient(),
-    provideEffects([RegisterEffect, LoginEffect]),
+    provideEffects([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
 
   ]
 };

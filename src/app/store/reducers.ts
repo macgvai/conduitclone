@@ -3,11 +3,18 @@ import {createReducer, on} from '@ngrx/store';
 import {registerAction, registerFailureAction, registerSuccessAction} from './actions/register.action';
 import {RegisterStateInterface} from '../shared/types/registerState.interface';
 import {loginAction, loginFailureAction, loginSuccessAction} from './actions/login.action';
+import {
+  getCurrentUserAction,
+  getCurrentUserActionFailure,
+  getCurrentUserActionSuccess
+} from './actions/getCurrentUser.action';
+import {state} from '@angular/animations';
 
 const initialState: RegisterStateInterface = {
   isSubmitting: false,
   currentUser: null,
   isLoggedIn: null,
+  isLoading: false,
   validationErrors: null
 };
 
@@ -66,4 +73,30 @@ export const authReducer = createReducer(
     })
   ),
 
+
+  on(
+    getCurrentUserAction,
+    state=> ({
+        ...state,
+        isLoading: true
+    })
+  ),
+  on(
+    getCurrentUserActionSuccess,
+    (state, action): RegisterStateInterface => ({
+        ...state,
+        isLoading: false,
+        isLoggedIn: true,
+        currentUser: action.currentUser
+      })
+  ),
+  on(
+    getCurrentUserActionFailure,
+    state => ({
+      ...state,
+      isLoading: false,
+      isLoggedIn: false,
+      currentUser: null
+    })
+  )
 );

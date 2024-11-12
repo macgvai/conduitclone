@@ -25,4 +25,12 @@ export class LoginService {
       .post<AuthResponseInterface>(url, data)
       .pipe(map( this.getUser ));
   }
+
+  getCurrentUser(): Observable<CurrentUserInterface> {
+    const url =  environment.apiUrl + '/users/user'
+
+    return this.http
+      .get<AuthResponseInterface>(url)
+      .pipe(map( this.getUser ));
+  }
 }
