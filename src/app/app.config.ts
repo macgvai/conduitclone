@@ -16,6 +16,7 @@ import {authReducer} from './store/reducers';
 import {GetCurrentUserEffect} from './store/effects/getCurrentUser.effect';
 import {PersistenceService} from './shared/services/persistence.service';
 import {AuthInterceptor} from './shared/services/authInterceptor.service';
+import {feedReducer} from './shared/feed/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -27,6 +28,7 @@ export const appConfig: ApplicationConfig = {
       logOnly: !isDevMode(),
     }),
     provideState({name: 'auth', reducer: authReducer}),
+    provideState({name: 'feed', reducer: feedReducer}),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([RegisterEffect, LoginEffect, GetCurrentUserEffect]),
     PersistenceService,
