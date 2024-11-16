@@ -1,5 +1,7 @@
+import { FeedStateInterface } from '../feed/types/feedState.interface';
+import { RegisterStateInterface } from './registerState.interface';
+
 export interface AppStateInterface {
-  auth: {
-    isSubmitting: boolean
-  }
+  auth: RegisterStateInterface;
+  feed: FeedStateInterface;
 }
