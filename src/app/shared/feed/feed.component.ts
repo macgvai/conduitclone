@@ -14,6 +14,7 @@ import { BannerComponent } from '../banner/banner.component';
 import { ErrorMessageComponent } from '../error-message/error-message.component';
 import { LoadingComponent } from '../loading/loading.component';
 import {environment} from '../../../environments/environment.development';
+import {PaginationComponent} from '../pagination/pagination.component';
 
 @Component({
     selector: 'mc-feed',
@@ -27,6 +28,7 @@ import {environment} from '../../../environments/environment.development';
         BannerComponent,
         ErrorMessageComponent,
         LoadingComponent,
+        PaginationComponent,
     ],
     templateUrl: './feed.component.html',
     styleUrl: './feed.component.scss',
@@ -56,14 +58,15 @@ export class FeedComponent implements OnInit, OnDestroy {
         this.feed$ = this.store.pipe(select(feedSelector));
         this.isLoading$ = this.store.pipe(select(isLoadingSelector));
         this.error$ = this.store.pipe(select(errorSelector));
-        this.baseUrl = this.router.url.split('?')[0]
+        this.baseUrl = this.router.url.split('?')[0];
     }
 
     initializeListeners(): void {
-        this.queryParamsSubscription = this.route.queryParams.subscribe((params: Params) => {
+        this.queryParamsSubscription = this.route.queryParams.subscribe(
+            (params: Params) => {
                 this.currentPage = Number(params['page'] || '1');
             }
-        )
+        );
     }
 
     fetchData(): void {

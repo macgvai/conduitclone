@@ -19,16 +19,17 @@
                 ADD TO FAVORITES
             </div>
         </div>
+
         <a [routerLink]="['/articles', article.slug]" class="preview-link">
             <h1>{{ article.title }}</h1>
             <p>{{ article.description }}</p>
             HERE IS LIST OF TAGS
         </a>
     </div>
-<!--    <mc-pagination-->
-<!--        [total]="(feed$ | async)?.articlesCount"-->
-<!--        [limit]="limit"-->
-<!--        [url]="baseUrl"-->
-<!--        [currentPage]="currentPage"-->
-<!--    ></mc-pagination>-->
+    <mc-pagination
+        [total]="(feed$ | async)?.articlesCount"
+        [limit]="limit"
+        [url]="baseUrl"
+        [currentPage]="currentPage"
+    ></mc-pagination>
 </div>
