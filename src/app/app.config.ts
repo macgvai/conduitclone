@@ -22,6 +22,7 @@ import { PersistenceService } from './shared/services/persistence.service';
 import { AuthInterceptor } from './shared/services/authInterceptor.service';
 import { feedReducer } from './shared/feed/store/reducers';
 import { GetFeedEffect } from './shared/feed/effects/getFeed.effect';
+import { provideRouterStore } from '@ngrx/router-store';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -29,23 +30,24 @@ export const appConfig: ApplicationConfig = {
     provideRouter(routes),
     provideStore(),
     provideStoreDevtools({
-      maxAge: 25,
-      logOnly: !isDevMode(),
+        maxAge: 25,
+        logOnly: !isDevMode(),
     }),
     provideState({ name: 'auth', reducer: authReducer }),
     provideState({ name: 'feed', reducer: feedReducer }),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
-      RegisterEffect,
-      LoginEffect,
-      GetCurrentUserEffect,
-      GetFeedEffect,
+        RegisterEffect,
+        LoginEffect,
+        GetCurrentUserEffect,
+        GetFeedEffect,
     ]),
     PersistenceService,
     {
-      provide: HTTP_INTERCEPTORS,
-      useClass: AuthInterceptor,
-      multi: true,
+        provide: HTTP_INTERCEPTORS,
+        useClass: AuthInterceptor,
+        multi: true,
     },
-  ],
+    provideRouterStore()
+],
 };
