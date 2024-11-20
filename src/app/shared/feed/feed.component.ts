@@ -16,6 +16,7 @@ import { LoadingComponent } from '../loading/loading.component';
 import {environment} from '../../../environments/environment.development';
 import {PaginationComponent} from '../pagination/pagination.component';
 import queryString from 'query-string';
+import {TagListComponent} from '../tag-list/tag-list.component';
 
 @Component({
     selector: 'mc-feed',
@@ -30,6 +31,7 @@ import queryString from 'query-string';
         ErrorMessageComponent,
         LoadingComponent,
         PaginationComponent,
+        TagListComponent,
     ],
     templateUrl: './feed.component.html',
     styleUrl: './feed.component.scss',
