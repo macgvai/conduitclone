@@ -23,6 +23,8 @@ import { AuthInterceptor } from './shared/services/authInterceptor.service';
 import { feedReducer } from './shared/feed/store/reducers';
 import { GetFeedEffect } from './shared/feed/effects/getFeed.effect';
 import { provideRouterStore } from '@ngrx/router-store';
+import {popularTagsReducer} from './shared/popular-tags/store/reducers';
+import {GetPopularTagsEffect} from './shared/popular-tags/store/effects/getPopularTags.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -35,12 +37,14 @@ export const appConfig: ApplicationConfig = {
     }),
     provideState({ name: 'auth', reducer: authReducer }),
     provideState({ name: 'feed', reducer: feedReducer }),
+    provideState({ name: 'tags', reducer: popularTagsReducer }),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
         RegisterEffect,
         LoginEffect,
         GetCurrentUserEffect,
         GetFeedEffect,
+        GetPopularTagsEffect
     ]),
     PersistenceService,
     {
