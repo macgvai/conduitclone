@@ -4,6 +4,7 @@ import {of} from 'rxjs';
 import {map, exhaustMap, catchError} from 'rxjs/operators';
 import {ActionType} from '../actionType';
 import {PopularTagsService} from '../../services/popularTags.service';
+import {getPopularTagsSuccessAction} from '../actions/getTags.action';
 
 @Injectable()
 export class GetPopularTagsEffect {
@@ -15,12 +16,12 @@ export class GetPopularTagsEffect {
       ofType(ActionType.GET_POPULAR_TAGS),
       exhaustMap(() => this.popularTagsService.getPopularTags()
         .pipe(
-          map(movies => ({type: '[Movies API] Movies Loaded Success', payload: movies})),
-          catchError(() => of({type: '[Movies API] Movies Loaded Error'}))
+          map(tags => (getPopularTagsSuccessAction({tags})),
+            catchError(() => of({type: '[Movies API] Movies Loaded Error'}))
+          )
         )
       )
-    )
-  );
+    ));
 
   constructor(
     // private actions$: Actions,

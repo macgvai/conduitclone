@@ -2,10 +2,12 @@ import {PopularTagsStateInterface} from '../types/popularTagsState.interface';
 import {createReducer, on} from '@ngrx/store';
 import {getPopularTagsAction, getPopularTagsFailureAction, getPopularTagsSuccessAction} from './actions/getTags.action';
 
+
 export const initialState: PopularTagsStateInterface = {
   tags: null
 }
 
+// @ts-ignore
 export const popularTagsReducer = createReducer(
   initialState,
   on(
@@ -13,25 +15,21 @@ export const popularTagsReducer = createReducer(
     (state: PopularTagsStateInterface) => (
       {
         ...state,
-        tags: ['aaaa']
       }
     )
   ),
   on(
     getPopularTagsSuccessAction,
-    (state: PopularTagsStateInterface) => (
-      {
-        ...state,
-        tags: ['aaaa']
-      }
-    )
+    (state: PopularTagsStateInterface, action) :PopularTagsStateInterface => ({
+      ...state,
+      tags: ['action.tags'],
+    })
   ),
   on(
     getPopularTagsFailureAction,
     (state: PopularTagsStateInterface) => (
       {
         ...state,
-        tags: ['aaaa']
       }
     )
   )

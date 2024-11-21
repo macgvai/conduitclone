@@ -1,4 +1,4 @@
-import {Injectable} from '@angular/core';
+import {inject, Injectable} from '@angular/core';
 import {Observable} from 'rxjs';
 import {GetPopularTagsInterface} from '../types/getPopularTags.interface';
 import {environment} from '../../../../environments/environment';

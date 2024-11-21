@@ -7,9 +7,7 @@
 
 <div class="sidebar">
     <p>Popular Tags</p>
-    <div class="tag-list">
-        <a href="#" class="tag-default tag-pill">111111111</a>
-        <a href="#" class="tag-default tag-pill">22222222</a>
-        <a href="#" class="tag-default tag-pill">3333333</a>
+    <div class="tag-list" *ngFor="let tag of popularTags$ | async">
+        <a href="#" class="tag-default tag-pill">{{ tag }}</a>
     </div>
 </div>
