@@ -1,9 +1,9 @@
-import {inject, Injectable} from '@angular/core';
+import {Injectable} from '@angular/core';
 import {map, Observable} from 'rxjs';
-import {GetPopularTagsInterface} from '../types/getPopularTags.interface';
+import { GetPopularTagsResponseInterface} from '../types/getPopularResponseTags.interface';
 import {environment} from '../../../../environments/environment';
 import {HttpClient} from '@angular/common/http';
-import {PopularTagsInterface} from '../types/popularTags.interface';
+import {PopularTagType} from '../../types/popularTagType';
 
 @Injectable(
   {providedIn: 'root'}
@@ -12,8 +12,8 @@ import {PopularTagsInterface} from '../types/popularTags.interface';
 export class PopularTagsService {
   constructor(private http: HttpClient) {}
 
-  getPopularTags(): Observable<PopularTagsInterface> {
+  getPopularTags(): Observable<PopularTagType[]> {
     const fullUrl = environment.apiUrl + '/tags';
-    return this.http.get<GetPopularTagsInterface>(fullUrl).pipe(map(data => data.tags));
+    return this.http.get<GetPopularTagsResponseInterface>(fullUrl).pipe(map(response => response.tags));
   }
 }

@@ -1,13 +1,17 @@
-<!--<mc-loading *ngIf="isLoading$ | async"></mc-loading>-->
+<mc-loading *ngIf="isLoading$ | async"></mc-loading>
 
-<!--<mc-error-message-->
-<!--    *ngIf="error$ | async"-->
-<!--    [message]="error$ | async"-->
-<!--&gt;</mc-error-message>-->
+<mc-error-message
+    *ngIf="error$ | async"
+    [message]="error$ | async"
+></mc-error-message>
 
-<div class="sidebar">
+<div class="sidebar" *ngIf="popularTags$ | async">
     <p>Popular Tags</p>
-    <div class="tag-list" *ngFor="let tag of popularTags$ | async">
-        <a href="#" class="tag-default tag-pill">{{ tag }}</a>
+    <div class="tag-list" >
+        <a *ngFor="let tag of popularTags$ | async"
+           [routerLink]="['/tags', tag]"
+           class="tag-default tag-pill"  >
+          {{ tag }}
+        </a>
     </div>
 </div>

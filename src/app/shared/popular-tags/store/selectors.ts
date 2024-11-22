@@ -7,7 +7,15 @@ import {selectRegister} from '../../../store/selectors';
 
 export const selectPopularTags = (state: AppStateInterface) => state.tags;
 
-export const selectTags = createSelector(
+export const selectTagsSelector = createSelector(
   selectPopularTags,
-  (state: PopularTagsStateInterface) => state.tags
+  (state: PopularTagsStateInterface) => state.data
+)
+export const isLoadingSelector = createSelector(
+  selectPopularTags,
+  (state: PopularTagsStateInterface) => state.isLoading
+)
+export const errorSelector = createSelector(
+  selectPopularTags,
+  (state: PopularTagsStateInterface) => state.error
 )

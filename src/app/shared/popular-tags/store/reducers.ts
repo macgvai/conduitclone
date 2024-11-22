@@ -4,7 +4,9 @@ import {getPopularTagsAction, getPopularTagsFailureAction, getPopularTagsSuccess
 
 
 export const initialState: PopularTagsStateInterface = {
-  tags: null
+  data: null,
+  error: null,
+  isLoading: false,
 }
 
 // @ts-ignore
@@ -12,24 +14,25 @@ export const popularTagsReducer = createReducer(
   initialState,
   on(
     getPopularTagsAction,
-    (state: PopularTagsStateInterface) => (
-      {
+    (state): PopularTagsStateInterface => ({
         ...state,
-      }
-    )
+        isLoading: true,
+    })
   ),
   on(
     getPopularTagsSuccessAction,
-    (state: PopularTagsStateInterface, action) :any => ({
+    (state, action): PopularTagsStateInterface => ({
       ...state,
-      tags: action.tags,
+      data: action.tags,
+      isLoading: false,
     })
   ),
   on(
     getPopularTagsFailureAction,
-    (state: PopularTagsStateInterface) => (
+    (state): PopularTagsStateInterface => (
       {
         ...state,
+        isLoading: false,
       }
     )
   )

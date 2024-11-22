@@ -1,7 +1,6 @@
 import {createAction, props} from '@ngrx/store';
 import {ActionType} from '../actionType';
-import {GetPopularTagsInterface} from '../../types/getPopularTags.interface';
-import {PopularTagsInterface} from '../../types/popularTags.interface';
+import {PopularTagType} from '../../../types/popularTagType';
 
 export const getPopularTagsAction = createAction(
     ActionType.GET_POPULAR_TAGS
@@ -9,7 +8,7 @@ export const getPopularTagsAction = createAction(
 
 export const getPopularTagsSuccessAction = createAction(
     ActionType.GET_POPULAR_TAGS_SUCCESS,
-    props<{tags: PopularTagsInterface}>()
+    props<{tags: PopularTagType[]}>()
 )
 
 export const getPopularTagsFailureAction = createAction(
