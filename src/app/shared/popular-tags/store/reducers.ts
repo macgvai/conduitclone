@@ -20,9 +20,9 @@ export const popularTagsReducer = createReducer(
   ),
   on(
     getPopularTagsSuccessAction,
-    (state: PopularTagsStateInterface, action) :PopularTagsStateInterface => ({
+    (state: PopularTagsStateInterface, action) :any => ({
       ...state,
-      tags: ['action.tags'],
+      tags: action.tags,
     })
   ),
   on(

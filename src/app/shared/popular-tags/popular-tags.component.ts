@@ -24,7 +24,7 @@ import {AsyncPipe, NgForOf} from '@angular/common';
 export class PopularTagsComponent implements OnInit{
   store = inject(Store)
 
-  popularTags$: Observable<string[]>
+  popularTags$: Observable<string[] | null>
 
   ngOnInit() {
     this.initializeValues()
