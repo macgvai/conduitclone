@@ -1,10 +1,11 @@
-import { FeedStateInterface } from '../feed/types/feedState.interface';
-import { RegisterStateInterface } from './registerState.interface';
+import {FeedStateInterface} from '../feed/types/feedState.interface';
+import {RegisterStateInterface} from './registerState.interface';
 import {PopularTagsStateInterface} from '../popular-tags/types/popularTagsState.interface';
-import {PopularTagType} from './popularTagType';
+import {ArticleStateInterface} from '../../article/types/articleState.interface';
 
 export interface AppStateInterface {
-  auth: RegisterStateInterface;
-  feed: FeedStateInterface;
-  tags: PopularTagsStateInterface
+  auth: RegisterStateInterface,
+  feed: FeedStateInterface,
+  tags: PopularTagsStateInterface,
+  article: ArticleStateInterface,
 }
