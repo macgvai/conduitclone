@@ -13,7 +13,7 @@ export class ArticleService {
 
   getArticles(slug: string): Observable<ArticleInterface>  {
     const fullUrl = environment.apiUrl + '/articles/' + slug;
-
+    console.log(fullUrl)
     return this.http.get<GetArticlesResponseInterface>(fullUrl).pipe(map(response => response.article));
   }
 }

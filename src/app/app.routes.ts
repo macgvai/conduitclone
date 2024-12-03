@@ -12,5 +12,5 @@ export const routes: Routes = [
   {path: '', component: GlobalFeedComponent},
   {path: 'feed', component: YourFeedComponent},
   {path: 'tags/:slug', component: TagFeedComponent},
-  {path: 'article', component: ArticleComponent},
+  {path: 'article/:slug', component: ArticleComponent},
 ];

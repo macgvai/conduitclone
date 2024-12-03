@@ -8,7 +8,7 @@ export const initialState: ArticleStateInterface = {
   isLoading: false,
 }
 
-export const scoreboardReducer = createReducer(
+export const articleReducer = createReducer(
   initialState,
   on(
     getArticleAction,

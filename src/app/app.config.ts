@@ -26,6 +26,7 @@ import {provideRouterStore} from '@ngrx/router-store';
 import {popularTagsReducer} from './shared/popular-tags/store/reducers';
 import {GetPopularTagsEffect} from './shared/popular-tags/store/effects/getPopularTags.effect';
 import {GetArticleEffect} from './article/store/effects/getArticle.effect';
+import {articleReducer} from './article/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -39,6 +40,7 @@ export const appConfig: ApplicationConfig = {
     provideState({name: 'auth', reducer: authReducer}),
     provideState({name: 'feed', reducer: feedReducer}),
     provideState({name: 'tags', reducer: popularTagsReducer}),
+    provideState({name: 'article', reducer: articleReducer}),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
       RegisterEffect,
