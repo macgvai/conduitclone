@@ -1,17 +1,31 @@
-import {Component, inject, OnDestroy, OnInit} from '@angular/core';
-import {select, Store} from '@ngrx/store';
-import {getArticleAction} from './store/actions/getArticle.action';
-import {ActivatedRoute, RouterLink} from '@angular/router';
-import {ArticleInterface} from '../shared/types/article.interface';
-import {combineLatest, combineLatestWith, elementAt, map, Observable, Subscription} from 'rxjs';
-import {errorSelector, getArticleSelector, isLoadingArticleSelector} from './store/selectors';
-import {currentUserSelector} from '../store/selectors';
-import {CurrentUserInterface} from '../shared/types/currentUser.interface';
-import {AsyncPipe, NgIf, NgOptimizedImage} from '@angular/common';
-import {log} from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
-import {LoadingComponent} from '../shared/loading/loading.component';
-import {ErrorMessageComponent} from '../shared/error-message/error-message.component';
-import {TagListComponent} from '../shared/tag-list/tag-list.component';
+import { Component, inject, OnDestroy, OnInit } from '@angular/core';
+import { select, Store } from '@ngrx/store';
+import {
+  deleteArticleAction,
+  getArticleAction,
+} from './store/actions/getArticle.action';
+import { ActivatedRoute, RouterLink } from '@angular/router';
+import { ArticleInterface } from '../shared/types/article.interface';
+import {
+  combineLatest,
+  combineLatestWith,
+  elementAt,
+  map,
+  Observable,
+  Subscription,
+} from 'rxjs';
+import {
+  errorSelector,
+  getArticleSelector,
+  isLoadingArticleSelector,
+} from './store/selectors';
+import { currentUserSelector } from '../store/selectors';
+import { CurrentUserInterface } from '../shared/types/currentUser.interface';
+import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
+import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
+import { LoadingComponent } from '../shared/loading/loading.component';
+import { ErrorMessageComponent } from '../shared/error-message/error-message.component';
+import { TagListComponent } from '../shared/tag-list/tag-list.component';
 
 @Component({
   selector: 'mc-article',
@@ -23,16 +37,16 @@ import {TagListComponent} from '../shared/tag-list/tag-list.component';
     NgOptimizedImage,
     LoadingComponent,
     ErrorMessageComponent,
-    TagListComponent
+    TagListComponent,
   ],
   templateUrl: './article.component.html',
-  styleUrl: './article.component.scss'
+  styleUrl: './article.component.scss',
 })
 export class ArticleComponent implements OnInit, OnDestroy {
-  store = inject(Store)
-  route = inject(ActivatedRoute)
+  store = inject(Store);
+  route = inject(ActivatedRoute);
 
-  slug: string
+  slug: string;
   article: ArticleInterface | null;
   articleSubscription: Subscription;
   isLoading$: Observable<boolean>;
@@ -55,8 +69,8 @@ export class ArticleComponent implements OnInit, OnDestroy {
     this.articleSubscription = this.store
       .pipe(select(getArticleSelector))
       .subscribe((article: ArticleInterface | null) => {
-        this.article = article
-      })
+        this.article = article;
+      });
 
     // deprecated
     // this.isAuthor$ = combineLatest(
@@ -69,21 +83,31 @@ export class ArticleComponent implements OnInit, OnDestroy {
 
     this.isAuthor$ = this.store.pipe(select(getArticleSelector)).pipe(
       combineLatestWith(this.store.pipe(select(currentUserSelector))),
-      map(([article, currentUser]: [ArticleInterface | null, CurrentUserInterface | null]) => {
-        if (!article || !currentUser) {
-          return false
-        }
+      map(
+        ([article, currentUser]: [
+          ArticleInterface | null,
+          CurrentUserInterface | null
+        ]) => {
+          if (!article || !currentUser) {
+            return false;
+          }
 
-        return currentUser.username === article.author.username
-      })
-    )
+          return currentUser.username === article.author.username;
+        }
+      )
+    );
   }
 
   fetchData() {
-    this.store.dispatch(getArticleAction({slug: this.slug}))
+    this.store.dispatch(getArticleAction({ slug: this.slug }));
   }
 
   ngOnDestroy(): void {
-    this.articleSubscription.unsubscribe()
+    this.articleSubscription.unsubscribe();
+  }
+
+  deleteArticle() {
+    console.log('this.slug');
+    this.store.dispatch(deleteArticleAction({ slug: this.slug }));
   }
 }

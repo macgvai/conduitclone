@@ -1,12 +1,17 @@
-import {ArticleStateInterface} from '../types/articleState.interface';
-import {createReducer, on} from '@ngrx/store';
-import {getArticleAction, getArticleFailureAction, getArticleSuccessAction} from './actions/getArticle.action';
+import { ArticleStateInterface } from '../types/articleState.interface';
+import { createReducer, on } from '@ngrx/store';
+import {
+  getArticleAction,
+  getArticleFailureAction,
+  getArticleSuccessAction,
+} from './actions/getArticle.action';
+import { routerNavigatedAction } from '@ngrx/router-store';
 
 export const initialState: ArticleStateInterface = {
   data: null,
   error: null,
   isLoading: false,
-}
+};
 
 export const articleReducer = createReducer(
   initialState,
@@ -33,4 +38,6 @@ export const articleReducer = createReducer(
       isLoading: false,
     })
   ),
+
+  on(routerNavigatedAction, (): ArticleStateInterface => initialState)
 );
