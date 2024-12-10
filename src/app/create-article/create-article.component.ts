@@ -11,5 +11,14 @@ import {ArticleFormComponent} from '../shared/article-form/article-form.componen
   styleUrl: './create-article.component.scss'
 })
 export class CreateArticleComponent {
+  initialValues = {
+    title: 'aaa',
+    description: 'aaa',
+    body: 'aa',
+    tagList: ['aaa', 'bbb']
+  }
 
+  onSubmit(res: any) {
+    console.log(res)
+  }
 }
