@@ -23,7 +23,7 @@ export class ArticleFormComponent implements OnInit {
 
   @Output('articleSubmit') articleSubmitEvent = new EventEmitter<ArticleInputInterface>();
 
-  form: FormGroup
+  form: FormGroup;
   private fb = inject(FormBuilder);
 
 

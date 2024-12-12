@@ -28,6 +28,7 @@ import { GetPopularTagsEffect } from './shared/popular-tags/store/effects/getPop
 import { GetArticleEffect } from './article/store/effects/getArticle.effect';
 import { articleReducer } from './article/store/reducers';
 import { DeleteArticleEffect } from './article/store/effects/deleteArticle.effect';
+import {CreateArticleEffect} from './create-article/store/effects/createArticle.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -51,6 +52,7 @@ export const appConfig: ApplicationConfig = {
       GetPopularTagsEffect,
       GetArticleEffect,
       DeleteArticleEffect,
+      CreateArticleEffect
     ]),
     PersistenceService,
     {

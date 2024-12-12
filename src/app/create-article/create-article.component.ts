@@ -12,10 +12,10 @@ import {ArticleFormComponent} from '../shared/article-form/article-form.componen
 })
 export class CreateArticleComponent {
   initialValues = {
-    title: 'aaa',
-    description: 'aaa',
-    body: 'aa',
-    tagList: ['aaa', 'bbb']
+    title: '',
+    description: '',
+    body: '',
+    tagList: []
   }
 
   onSubmit(res: any) {
