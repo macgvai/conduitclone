@@ -15,10 +15,10 @@ export class CreateArticleService {
   constructor(private http: HttpClient) {
   }
 
-  createArticle(articleInput: ArticleInputInterface): Observable<ArticleInterface> {
+  createArticle(article: ArticleInputInterface): Observable<ArticleInterface> {
     const fullUrl = environment.apiUrl + '/articles';
-
-    return this.http.post<SaveArticleResponseInterface>(fullUrl, articleInput).pipe(
+    console.log('article', article)
+    return this.http.post<SaveArticleResponseInterface>(fullUrl, {article}).pipe(
       map((response: SaveArticleResponseInterface) => response.article)
     );
   }

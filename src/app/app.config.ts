@@ -29,6 +29,7 @@ import { GetArticleEffect } from './article/store/effects/getArticle.effect';
 import { articleReducer } from './article/store/reducers';
 import { DeleteArticleEffect } from './article/store/effects/deleteArticle.effect';
 import {CreateArticleEffect} from './create-article/store/effects/createArticle.effect';
+import {createArticleReducer} from './create-article/store/redusers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -43,6 +44,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'feed', reducer: feedReducer }),
     provideState({ name: 'tags', reducer: popularTagsReducer }),
     provideState({ name: 'article', reducer: articleReducer }),
+    provideState({ name: 'createArticle', reducer: createArticleReducer}),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
       RegisterEffect,
