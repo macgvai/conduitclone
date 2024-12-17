@@ -30,6 +30,9 @@ import { articleReducer } from './article/store/reducers';
 import { DeleteArticleEffect } from './article/store/effects/deleteArticle.effect';
 import {CreateArticleEffect} from './create-article/store/effects/createArticle.effect';
 import {createArticleReducer} from './create-article/store/redusers';
+import {EditArticleService} from './edit-article/services/edit-article.service';
+import {GetArticleEditEffect} from './edit-article/store/effects/getArticle.effect';
+import {editArticleReducer} from './edit-article/store/redusers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -45,6 +48,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'tags', reducer: popularTagsReducer }),
     provideState({ name: 'article', reducer: articleReducer }),
     provideState({ name: 'createArticle', reducer: createArticleReducer}),
+    provideState({ name: 'editArticle', reducer: editArticleReducer}),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
       RegisterEffect,
@@ -54,7 +58,9 @@ export const appConfig: ApplicationConfig = {
       GetPopularTagsEffect,
       GetArticleEffect,
       DeleteArticleEffect,
-      CreateArticleEffect
+      CreateArticleEffect,
+      EditArticleService,
+      GetArticleEditEffect
     ]),
     PersistenceService,
     {

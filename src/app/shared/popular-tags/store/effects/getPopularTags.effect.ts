@@ -8,8 +8,8 @@ import {getPopularTagsFailureAction, getPopularTagsSuccessAction} from '../actio
 
 @Injectable()
 export class GetPopularTagsEffect {
-  // actions$ = inject(Actions)
-  // popularTagsService = inject(PopularTagsService)
+  actions$ = inject(Actions)
+  popularTagsService = inject(PopularTagsService)
 
   getPopularTagsEffect$ = createEffect(() =>
     this.actions$.pipe(
@@ -25,6 +25,6 @@ export class GetPopularTagsEffect {
       )
     ));
 
-  constructor(private actions$: Actions, private popularTagsService: PopularTagsService) {
-  }
+  // constructor(private actions$: Actions, private popularTagsService: PopularTagsService) {
+  // }
 }
