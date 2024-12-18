@@ -9,10 +9,6 @@ export const isSubmittingSelector = createSelector(
   editArticle,
   (state: EditArticleState) => state.isSubmitting
 )
-export const isLoadingArticleSelector = createSelector(
-  editArticle,
-  (state: EditArticleState) => state.isLoading
-)
 
 export const errorsSelector = createSelector(
   editArticle,

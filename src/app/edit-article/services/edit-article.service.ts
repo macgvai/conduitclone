@@ -13,9 +13,10 @@ export class EditArticleService {
   http = inject(HttpClient)
 
   updateArticle(slug: string, articleInput: ArticleInputInterface): Observable<ArticleInterface> {
+    debugger
     const fullUrl = `${environment.apiUrl}/articles/${slug}`;
 
-    return this.http.put<SaveArticleResponseInterface>(fullUrl, {articleInput}).pipe(
+    return this.http.put<SaveArticleResponseInterface>(fullUrl, {article: articleInput}).pipe(
       map((response: SaveArticleResponseInterface) => response.article)
     );
   }

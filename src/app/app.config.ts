@@ -30,9 +30,9 @@ import { articleReducer } from './article/store/reducers';
 import { DeleteArticleEffect } from './article/store/effects/deleteArticle.effect';
 import {CreateArticleEffect} from './create-article/store/effects/createArticle.effect';
 import {createArticleReducer} from './create-article/store/redusers';
-import {EditArticleService} from './edit-article/services/edit-article.service';
 import {GetArticleEditEffect} from './edit-article/store/effects/getArticle.effect';
 import {editArticleReducer} from './edit-article/store/redusers';
+import {UpdateArticleEffect} from './edit-article/store/effects/editArticle.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -59,7 +59,7 @@ export const appConfig: ApplicationConfig = {
       GetArticleEffect,
       DeleteArticleEffect,
       CreateArticleEffect,
-      EditArticleService,
+      UpdateArticleEffect,
       GetArticleEditEffect
     ]),
     PersistenceService,
