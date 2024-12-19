@@ -9,6 +9,7 @@ import {
   getCurrentUserActionSuccess
 } from './actions/getCurrentUser.action';
 import {state} from '@angular/animations';
+import {updateCurrentUserSuccessAction} from './actions/updateCurrentUser.action';
 
 const initialState: RegisterStateInterface = {
   isSubmitting: false,
@@ -97,6 +98,14 @@ export const authReducer = createReducer(
       isLoading: false,
       isLoggedIn: false,
       currentUser: null
+    })
+  ),
+
+  on(
+    updateCurrentUserSuccessAction,
+    (state, action): RegisterStateInterface => ({
+      ...state,
+      currentUser: action.currentUser
     })
   )
 );

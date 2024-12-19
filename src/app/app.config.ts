@@ -33,6 +33,8 @@ import {createArticleReducer} from './create-article/store/redusers';
 import {GetArticleEditEffect} from './edit-article/store/effects/getArticle.effect';
 import {editArticleReducer} from './edit-article/store/redusers';
 import {UpdateArticleEffect} from './edit-article/store/effects/editArticle.effect';
+import {UpdateCurrentUserEffect} from './store/effects/updateCurrentuserEffect';
+import {settingsReducer} from './settings/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -49,6 +51,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'article', reducer: articleReducer }),
     provideState({ name: 'createArticle', reducer: createArticleReducer}),
     provideState({ name: 'editArticle', reducer: editArticleReducer}),
+    provideState({ name: 'settings', reducer: settingsReducer}),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
       RegisterEffect,
@@ -60,7 +63,8 @@ export const appConfig: ApplicationConfig = {
       DeleteArticleEffect,
       CreateArticleEffect,
       UpdateArticleEffect,
-      GetArticleEditEffect
+      GetArticleEditEffect,
+      UpdateCurrentUserEffect
     ]),
     PersistenceService,
     {
