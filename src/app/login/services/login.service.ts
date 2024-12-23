@@ -39,7 +39,7 @@ export class LoginService {
     const url =  environment.apiUrl + '/user'
 
     return this.http
-      .put(url, currentUserInput)
+      .put(url, {user: currentUserInput})
       .pipe(map( this.getUser ));
   }
 }

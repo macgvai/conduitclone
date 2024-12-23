@@ -35,6 +35,7 @@ import {editArticleReducer} from './edit-article/store/redusers';
 import {UpdateArticleEffect} from './edit-article/store/effects/editArticle.effect';
 import {UpdateCurrentUserEffect} from './store/effects/updateCurrentuserEffect';
 import {settingsReducer} from './settings/store/reducers';
+import {LogoutEffect} from './store/effects/logout.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -64,7 +65,8 @@ export const appConfig: ApplicationConfig = {
       CreateArticleEffect,
       UpdateArticleEffect,
       GetArticleEditEffect,
-      UpdateCurrentUserEffect
+      UpdateCurrentUserEffect,
+      LogoutEffect
     ]),
     PersistenceService,
     {

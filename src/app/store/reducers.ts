@@ -10,6 +10,7 @@ import {
 } from './actions/getCurrentUser.action';
 import {state} from '@angular/animations';
 import {updateCurrentUserSuccessAction} from './actions/updateCurrentUser.action';
+import {logoutAction} from './actions/syncAction';
 
 const initialState: RegisterStateInterface = {
   isSubmitting: false,
@@ -106,6 +107,14 @@ export const authReducer = createReducer(
     (state, action): RegisterStateInterface => ({
       ...state,
       currentUser: action.currentUser
+    })
+  ),
+
+  on(
+    logoutAction,
+    (state, action): RegisterStateInterface => ({
+      ...initialState,
+      isLoggedIn: false
     })
   )
 );
