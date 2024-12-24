@@ -16,7 +16,11 @@
                 </span>
             </div>
             <div class="pull-xs-right">
-                ADD TO FAVORITES
+                <mc-add-to-favorites
+                [isFavorited]="article.favorited"
+                [articleSlug]="article.slug"
+                [favoritesCount]="article.favoritesCount"
+                ></mc-add-to-favorites>
             </div>
         </div>
 
