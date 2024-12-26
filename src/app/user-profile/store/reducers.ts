@@ -34,7 +34,7 @@ export const userProfileReducer = createReducer(
 
   on(
     getUserProfileFailureAction,
-    (state, action): UserProfileStateInterface => ({
+    (state): UserProfileStateInterface => ({
       ...state,
       isLoading: false,
     })
