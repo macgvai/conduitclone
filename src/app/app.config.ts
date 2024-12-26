@@ -37,6 +37,8 @@ import {UpdateCurrentUserEffect} from './store/effects/updateCurrentuserEffect';
 import {settingsReducer} from './settings/store/reducers';
 import {LogoutEffect} from './store/effects/logout.effect';
 import {AddToFavoritesEffect} from './shared/add-to-favorites/store/effects/addToFavorites.effect';
+import {GetUserProfileEffect} from './user-profile/store/effects/getUserProfile.effect';
+import {userProfileReducer} from './user-profile/store/reducers';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -54,6 +56,7 @@ export const appConfig: ApplicationConfig = {
     provideState({ name: 'createArticle', reducer: createArticleReducer}),
     provideState({ name: 'editArticle', reducer: editArticleReducer}),
     provideState({ name: 'settings', reducer: settingsReducer}),
+    provideState({ name: 'userProfile', reducer: userProfileReducer}),
     provideHttpClient(withInterceptorsFromDi()),
     provideEffects([
       RegisterEffect,
@@ -68,7 +71,8 @@ export const appConfig: ApplicationConfig = {
       GetArticleEditEffect,
       UpdateCurrentUserEffect,
       LogoutEffect,
-      AddToFavoritesEffect
+      AddToFavoritesEffect,
+      GetUserProfileEffect
     ]),
     PersistenceService,
     {
