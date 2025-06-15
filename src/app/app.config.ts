@@ -39,6 +39,7 @@ import {LogoutEffect} from './store/effects/logout.effect';
 import {AddToFavoritesEffect} from './shared/add-to-favorites/store/effects/addToFavorites.effect';
 import {GetUserProfileEffect} from './user-profile/store/effects/getUserProfile.effect';
 import {userProfileReducer} from './user-profile/store/reducers';
+import {FollowProfileEffect} from './user-profile/store/effects/followProfile.effect';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -72,7 +73,8 @@ export const appConfig: ApplicationConfig = {
       UpdateCurrentUserEffect,
       LogoutEffect,
       AddToFavoritesEffect,
-      GetUserProfileEffect
+      GetUserProfileEffect,
+      FollowProfileEffect
     ]),
     PersistenceService,
     {

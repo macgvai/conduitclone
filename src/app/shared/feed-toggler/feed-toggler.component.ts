@@ -14,8 +14,7 @@ import { RouterLink, RouterLinkActive } from '@angular/router';
 })
 export class FeedTogglerComponent implements OnInit {
   @Input('tagName') tagNameProps: string | null;
-
-  store = inject(Store);
+  public store = inject(Store);
 
   isLoggedIn$: Observable<boolean>;
 

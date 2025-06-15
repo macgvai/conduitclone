@@ -1,6 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { StoreModule } from '@ngrx/store';
 import { ArticleFormComponent } from './article-form.component';
+import { provideMockStore } from '@ngrx/store/testing';
 
 describe('ArticleFormComponent', () => {
   let component: ArticleFormComponent;
@@ -8,9 +9,9 @@ describe('ArticleFormComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [ArticleFormComponent]
-    })
-    .compileComponents();
+      imports: [ArticleFormComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(ArticleFormComponent);
     component = fixture.componentInstance;

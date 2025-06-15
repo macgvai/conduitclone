@@ -7,7 +7,8 @@
           <h4>{{userProfile.username}}</h4>
           <p>{{userProfile.biography}}</p>
           <div>
-            FOLLOW USER BUTTON
+            <a class="btn btn-sm btn-outline-secondary action-btn" *ngIf="!(isCurrentUserProfile$ | async)" (click)="followUser()">{{userProfile.following ? 'Unfollow' : 'Follow'}} {{userProfile.username}}</a>
+
             <a class="btn btn-sm btn-outline-secondary action-btn"  [routerLink]="['/settings']" *ngIf="isCurrentUserProfile$ | async">Edit Profile Settings</a>
           </div>
         </div>

@@ -5,6 +5,11 @@ import {
   getUserProfileFailureAction,
   getUserProfileSuccessAction
 } from './actions/getUserProfile.action';
+import {
+  followProfileAction,
+  followProfileFailureAction,
+  followProfileSuccessAction
+} from './actions/followProfile.action';
 
 const initialState: UserProfileStateInterface = {
   data: null,
@@ -38,5 +43,30 @@ export const userProfileReducer = createReducer(
       ...state,
       isLoading: false,
     })
-  )
+  ),
+
+  on(
+    followProfileAction,
+    (state, action): UserProfileStateInterface => ({
+      ...state,
+      isLoading: true,
+    })
+  ),
+
+  on(
+    followProfileSuccessAction,
+    (state, action): UserProfileStateInterface => ({
+      ...state,
+      isLoading: false,
+      data: action.userProfile,
+    })
+  ),
+
+  on(
+    followProfileFailureAction,
+    (state): UserProfileStateInterface => ({
+      ...state,
+      isLoading: false,
+    })
+  ),
 )

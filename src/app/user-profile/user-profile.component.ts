@@ -18,6 +18,8 @@ import { currentUserSelector } from '../store/selectors';
 import { CurrentUserInterface } from '../shared/types/currentUser.interface';
 import { AsyncPipe, NgIf } from '@angular/common';
 import { FeedComponent } from '../shared/feed/feed.component';
+import {UserProfileService} from './services/user-profile.service';
+import {followProfileAction} from './store/actions/followProfile.action';
 
 @Component({
   selector: 'mc-user-profile',
@@ -38,6 +40,8 @@ export class UserProfileComponent implements OnInit, OnDestroy {
   store = inject(Store);
   route = inject(ActivatedRoute);
   router = inject(Router);
+
+  service = inject(UserProfileService);
 
   ngOnInit(): void {
     this.initializeValues();
@@ -89,6 +93,10 @@ export class UserProfileComponent implements OnInit, OnDestroy {
     return (this.apiUrl = isFavorites
       ? `/articles?favorited=${this.slug}`
       : `/articles?author=${this.slug}`);
+  }
+
+  followUser(): void {
+    this.store.dispatch(followProfileAction({user: this.userProfile}))
   }
 
   ngOnDestroy(): void {

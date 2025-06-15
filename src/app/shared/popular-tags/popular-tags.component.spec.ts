@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-
+import { provideMockStore, MockStore } from '@ngrx/store/testing';
 import { PopularTagsComponent } from './popular-tags.component';
 
 describe('PopularTagsComponent', () => {
@@ -8,9 +8,9 @@ describe('PopularTagsComponent', () => {
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [PopularTagsComponent]
-    })
-    .compileComponents();
+      imports: [PopularTagsComponent],
+      providers: [provideMockStore({})],
+    }).compileComponents();
 
     fixture = TestBed.createComponent(PopularTagsComponent);
     component = fixture.componentInstance;
