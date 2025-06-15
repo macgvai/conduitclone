@@ -5,14 +5,14 @@
     <div class="article-preview" *ngFor="let article of (feed$ | async)?.articles">
         <div class="article-meta">
             <a [routerLink]="['/profiles', article.author.username]">
-                <img [src]="article.author.image" [alt]="article.author.username">
+                <img [src]="article.author.image || 'avatar.png'" [alt]="article.author.username">
             </a>
             <div class="info">
                 <a [routerLink]="['/profiles', article.author.username]">
                     {{ article.author.username }}
                 </a>
                 <span class="date">
-                  {{ article.createdAt }}
+                  {{ article.createdAt | date:'yyyy-MM-dd HH:mm' }}
                 </span>
             </div>
             <div class="pull-xs-right">

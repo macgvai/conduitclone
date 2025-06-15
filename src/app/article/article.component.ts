@@ -21,7 +21,7 @@ import {
 } from './store/selectors';
 import { currentUserSelector } from '../store/selectors';
 import { CurrentUserInterface } from '../shared/types/currentUser.interface';
-import { AsyncPipe, NgIf, NgOptimizedImage } from '@angular/common';
+import {AsyncPipe, DatePipe, NgIf, NgOptimizedImage} from '@angular/common';
 import { log } from '@angular-devkit/build-angular/src/builders/ssr-dev-server';
 import { LoadingComponent } from '../shared/loading/loading.component';
 import { ErrorMessageComponent } from '../shared/error-message/error-message.component';
@@ -38,6 +38,7 @@ import { TagListComponent } from '../shared/tag-list/tag-list.component';
     LoadingComponent,
     ErrorMessageComponent,
     TagListComponent,
+    DatePipe,
   ],
   templateUrl: './article.component.html',
   styleUrl: './article.component.scss',

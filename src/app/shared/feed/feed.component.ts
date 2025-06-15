@@ -8,7 +8,7 @@ import {
   feedSelector,
   isLoadingSelector,
 } from './store/selectors';
-import {AsyncPipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
+import {AsyncPipe, DatePipe, NgForOf, NgIf, NgOptimizedImage} from '@angular/common';
 import {ActivatedRoute, Params, Router, RouterLink} from '@angular/router';
 import {BannerComponent} from '../banner/banner.component';
 import {ErrorMessageComponent} from '../error-message/error-message.component';
@@ -34,6 +34,7 @@ import {AddToFavoritesComponent} from '../add-to-favorites/add-to-favorites.comp
     PaginationComponent,
     TagListComponent,
     AddToFavoritesComponent,
+    DatePipe,
   ],
   templateUrl: './feed.component.html',
   styleUrl: './feed.component.scss',

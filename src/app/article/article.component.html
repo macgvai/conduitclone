@@ -4,14 +4,14 @@
       <h1>{{ article.title }}</h1>
       <div class="article-meta">
         <a [routerLink]="['/profile', article.author.username]">
-          <img [src]="article.author.image" [alt]="article.author.username"/>
+          <img [src]="article.author.image || 'avatar.png'" [alt]="article.author.username"/>
         </a>
         <div class="info">
           <a [routerLink]="['/profile', article.author.username]">
             {{ article.author.username }}
           </a>
           <span class="date">
-            {{ article.createdAt }}
+            {{ article.createdAt | date: "yyyy-MM-dd HH:mm"}}
           </span>
         </div>
 <!--        <span *ngIf="isAuthor$ | async">-->
@@ -20,7 +20,7 @@
             <i class="ion-edit"></i>
             Edit Articles
           </a>
-          <button (click)="deleteArticle()" class="btn btn-outline-danger btn-sm">DELETE BUTTON</button>
+          <button style="margin-left: 10px" (click)="deleteArticle()" class="btn btn-outline-danger btn-sm">DELETE BUTTON</button>
         </span>
       </div>
     </div>
